@@ -25,4 +25,12 @@ public class ValidateSubsequenceTest {
 
         assertThat(ValidateSubsequence.isValidSubsequence(inputArray, sequence), is(true));
     }
+
+    @Test
+    public void notASubsequence(){
+        List<Integer> inputArray = Arrays.asList(5, 1, 22, 25, 6, -1, 8, 10);
+        List<Integer> sequence = Arrays.asList(1, 25, 22, 6);
+
+        assertThat(ValidateSubsequence.isValidSubsequence(inputArray, sequence), is(false));
+    }
 }

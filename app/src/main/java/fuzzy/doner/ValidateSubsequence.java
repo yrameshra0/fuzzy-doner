@@ -10,11 +10,18 @@ public class ValidateSubsequence {
             if(clonedArray.isEmpty())
                 return;
             Integer firstValue = clonedArray.remove(0);
-            if(value!=firstValue){
+            if(!value.equals(firstValue)){
                 clonedArray.add(0, firstValue);
             }
         });
 
         return clonedArray.isEmpty();
     }
+
+    /**
+     * Improvisations:
+     * 1. 2 Indexes walking method
+     * 2. Update index while match found
+     * Current approach is good but to many moving parts can be proved hence
+     */
 }

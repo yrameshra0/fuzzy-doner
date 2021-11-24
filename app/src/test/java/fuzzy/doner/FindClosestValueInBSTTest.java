@@ -12,7 +12,7 @@ public class FindClosestValueInBSTTest {
     @Test
     public void bst_with_no_match() {
         BST binarySearchTree = new BST(10);
-        assertThat(Ints.asList(findClosestValueInBst( binarySearchTree, 1)), is(-1));
+        assertThat(findClosestValueInBst( binarySearchTree, 1), is(10));
     }
 
     @Test
@@ -20,6 +20,6 @@ public class FindClosestValueInBSTTest {
         BST binarySearchTree = new BST(10);
         binarySearchTree.left = new BST(5);
         binarySearchTree.right=new BST(15);
-        assertThat(Ints.asList(findClosestValueInBst( binarySearchTree, 6)), is(10));
+        assertThat(findClosestValueInBst( binarySearchTree, 6), is(5));
     }
 }

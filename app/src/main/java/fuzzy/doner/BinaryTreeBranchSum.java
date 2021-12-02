@@ -1,29 +1,27 @@
 package fuzzy.doner;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class BinaryTreeBranchSum {
-    private static Map<String, Integer> memoSum = new HashMap<>();
+public class BinaryTreeBranchSum { private static Map<String, Integer> memoSum = new HashMap<>();
+    private static List<Integer> leafSum = new LinkedList<>();
 
-    public static List<Integer> generate(BinaryTree root) {
-        memoSum.put(root.value+"", root.value);
-        sumOfBranches(root, root.value+"");
-        return memoSum.keySet().stream()
-                .map(value->value.contains("LEAFSUM"))
-                .map(value->memoSum.get(value))
-                .collect(Collectors.toList());
+    public static List<Integer> branchSums(BinaryTree root) {
+        memoSum.clear();
+        leafSum.clear();
+        sumOfBranches(root, "");
+        return leafSum;
     }
 
     private static void sumOfBranches(BinaryTree root, String key) {
-        if(root.left==null && root.right==null){
-            memoSum.put("LEAFSUM_"+key+root.value, memoSum.get(key)_+root.value);
+        if (root == null)
+            return;
+
+        if (root.left == null && root.right == null) {
+            leafSum.add(memoSum.getOrDefault(key, 0) + root.value);
             return;
         }
-        String newKey = key+root.value;
-        memoSum.put(key+root.value, memoSum.get(key)+root.value);
+        String newKey = key + root.value;
+        memoSum.put(key + root.value, memoSum.getOrDefault(key, 0) + root.value);
         sumOfBranches(root.left, newKey);
         sumOfBranches(root.right, newKey);
     }
@@ -39,6 +37,7 @@ public class BinaryTreeBranchSum {
             this.right = null;
         }
     }
+
 }
 
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class BinaryTreeBranchSumTest {
     @Test
@@ -22,7 +22,17 @@ public class BinaryTreeBranchSumTest {
         root.right.left = new BinaryTreeBranchSum.BinaryTree(6);
         root.right.right = new BinaryTreeBranchSum.BinaryTree(7);
 
-        List<Integer> sumOfBranches = BinaryTreeBranchSum.generate();
+        List<Integer> sumOfBranches = BinaryTreeBranchSum.branchSums(root);
         assertThat(sumOfBranches, is(List.of(15, 16, 18, 10, 11)));
+    }
+
+    @Test
+    public void single_node(){
+        BinaryTreeBranchSum.BinaryTree root;
+        root = new BinaryTreeBranchSum.BinaryTree(1);
+
+
+        List<Integer> sumOfBranches = BinaryTreeBranchSum.branchSums(root);
+        assertThat(sumOfBranches, is(List.of(1)));
     }
 }

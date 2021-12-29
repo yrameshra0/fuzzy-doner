@@ -22,13 +22,22 @@ public class MinimumWaitingTime {
          * Additional storage of saving sum till at location
          */
 
-        Arrays.stream(queries).sorted().forEach(value -> checkpoint.add(Optional.ofNullable(checkpoint.peekLast()).orElse(0)+value));
+        Arrays.stream(queries)
+                .sorted()
+                .forEach(value ->
+                        checkpoint.add(Optional.ofNullable(checkpoint.peekLast()).orElse(0) + value)
+                );
+        /**
+         *  Because above loop iterates till end where as we are supposed to remote the waiting time for last query to
+         *  process hence removing the last element
+         */
+
         checkpoint.removeLast();
 
         return checkpoint.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public static int calculateWithoutAdditionalStorage(int[] queries){
+    public static int calculateWithoutAdditionalStorage(int[] queries) {
         /**
          * For Calculating Minimum Waiting Time for multiple queries
          * 1. Sort the array (Enables us to be greedy to pick the lowest execution time required queries first)
@@ -41,9 +50,9 @@ public class MinimumWaitingTime {
 
         Arrays.sort(queries);
         int runningSum = 0;
-        for(int index = 0; index<queries.length; index++){
+        for (int index = 0; index < queries.length; index++) {
             int elementAtLocation = queries[index];
-            runningSum += elementAtLocation * (queries.length-(index+1));
+            runningSum += elementAtLocation * (queries.length - (index + 1));
         }
 
         return runningSum;

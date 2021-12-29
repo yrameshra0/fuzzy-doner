@@ -28,7 +28,7 @@ public class MinimumWaitingTime {
         return checkpoint.stream().mapToInt(Integer::intValue).sum();
     }
 
-    public static int calculateWithoutAdditionalStorate(int[] queries){
+    public static int calculateWithoutAdditionalStorage(int[] queries){
         /**
          * For Calculating Minimum Waiting Time for multiple queries
          * 1. Sort the array (Enables us to be greedy to pick the lowest execution time required queries first)
@@ -38,6 +38,14 @@ public class MinimumWaitingTime {
          * Above logic significance is that 1 will need to be added a total of 4 times anyways in the total
          * execution calculation
          */
-        return 0;
+
+        Arrays.sort(queries);
+        int runningSum = 0;
+        for(int index = 0; index<queries.length; index++){
+            int elementAtLocation = queries[index];
+            runningSum += elementAtLocation * (queries.length-(index+1));
+        }
+
+        return runningSum;
     }
 }

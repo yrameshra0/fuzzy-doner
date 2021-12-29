@@ -23,4 +23,22 @@ public class MinimumWaitingTimeTest {
         int minWaitTime = MinimumWaitingTime.calculateWithExtraStorage(new int[]{6, 3, 1, 2, 2});
         assertThat(minWaitTime, is(17));
     }
+
+    @Test
+    public void min_wait_time_for_single_query_no_internal_storage(){
+        int minWaitTime = MinimumWaitingTime.calculateWithoutAdditionalStorage(new int[]{100});
+        assertThat(minWaitTime, is(0));
+    }
+
+    @Test
+    public void min_wait_time_for_2_queries_no_internal_storage(){
+        int minWaitTime = MinimumWaitingTime.calculateWithoutAdditionalStorage(new int[]{100, 1});
+        assertThat(minWaitTime, is(1));
+    }
+
+    @Test
+    public void min_wait_time_for_all_queries_no_internal_storage(){
+        int minWaitTime = MinimumWaitingTime.calculateWithoutAdditionalStorage(new int[]{6, 3, 1, 2, 2});
+        assertThat(minWaitTime, is(17));
+    }
 }
